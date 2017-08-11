@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>AngularJs</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="broadcastRoot2.js"></script>
+    <!--<script src="broadcast1.js"></script>-->
+
+</head>
+
+<body ng-app="app">
+    <div ng-controller="calc1" style="border: 1px solid blue; margin:5px; padding:5px;">
+        <strong>Parent Controller</strong> a = {{a}}<br> b = {{b}}<br> sum = {{a + b}}
+        <button ng-click="doCalc1Broadcast1()">Calc - Broadcast 1</button>
+        <button ng-click="doCalc1BroadcastRoot()">Calc - Broadcast Root</button>
+        <div ng-controller="childcalc1" style="border: 1px solid green; margin:5px; padding:5px;">
+            <strong>Child Controller</strong><br>
+        </div>
+    </div>
+
+    <div ng-controller="calc2" style="border: 1px solid blue; margin:5px; padding:5px;">
+        <strong>Sibling</strong> <br> c = {{c}}<br> d = {{d}}<br> sum = {{c+d}}
+    </div>
+</body>
+
+</html>

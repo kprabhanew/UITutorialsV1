@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.js"></script>
+    <script src="app.js"></script>
+    <style>
+        .ng-scope {
+            padding: 10px;
+            border: 1px solid #eee;
+        }
+    </style>
+</head>
+
+<body ng-app="MyApp">
+    <h1>$emit $Broadcast $on - Sibling Controllers</h1>
+    <div ng-controller="MyController1">
+        <input type="button" value="Broadcast Down" ng-click="OnClick($event)" />
+        <h4>{{Message}}</h4>
+
+    </div>
+    <div ng-controller="MyController2">
+        <h4>{{Message}}</h4>
+
+    </div>
+    <div ng-controller="MyController3">
+        <h4>{{Message}}</h4>
+        <input type="button" value="Emit Up" ng-click="OnClick($event)" />
+    </div>
+</body>
+
+</html>

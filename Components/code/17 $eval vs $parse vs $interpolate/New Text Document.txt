@@ -1,0 +1,11 @@
+Explains the difference between $eval, $parse and $interpolate
+
+Description
+
+The video covers the following concepts
+
+What is $eval, $parse, $interpolate
+using $eval with locals and functions
+$parse with scope and locals
+using strings to $interpolate with scope and locals, filters etc.
+using "assign" with $parse

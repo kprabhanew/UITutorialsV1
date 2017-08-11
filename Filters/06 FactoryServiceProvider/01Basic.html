@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Angular Intro</title>
+    <!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>-->
+
+    <script src="scripts/jquery-1.10.2.js"></script>
+    <script src="scripts/bootstrap.js"></script>
+    <script src="scripts/angular.js"></script>
+    <script src="01Basic-app.js"></script>
+</head>
+
+<body ng-app="myApp">
+    <h2>Angular Services</h2>
+    <div ng-controller="myController">
+        <h3>Using Factory </h3>
+        <button ng-click="HelloFactory()">Hello Factory</button>
+        <button ng-click="SumFactory()">Sum Factory</button>
+        <div ng-bind="FactoryOutput"></div>
+    </div>
+    <hr>
+    <div ng-controller="myController2">
+        <h3>Using Service </h3>
+        <button ng-click="HelloService()">Hello Service</button>
+        <button ng-click="SumService()">Sum Service</button>
+        <div ng-bind="ServiceOutput"></div>
+    </div>
+    <hr>
+    <div ng-controller="myController3">
+        <h3>Using Provider </h3>
+        <button ng-click="HelloProvider()">Hello Provider</button>
+        <button ng-click="SumProvider()">Sum Provider</button>
+        <div ng-bind="ProviderOutput"></div>
+    </div>
+    <hr>
+    <a href="images/FactoryServiceProvider.jpg" target="_blank">Click Here</a><br>
+    <p>Angular services are <a href="#">singleton</a> objects that <strong>carry out some sort of task</strong> and you also use services to <strong>organize and share code across your application</strong>.</p>
+
+    <p>Angular Services follow the Single Responsibility Principle (SRP) and are wired together using <a href="#" rel="nofollow" target="_blank">dependency injection (DI)</a>. The Single Responsibility principle ensures that each object will have only a
+        single responsibility.<br> For Example, controllers are responsible for wiring model data to views. It will violate the Single Responsibility Principle, if we use controllers to carry out some other logic. Therefore, the business logic should
+        be abstracted out into services and they are injected when needed. This makes the application more manageable and testable.</p>
+
+    <p>Angular offers several useful services like <strong>$http, $log, $filter</strong> etc. The inbuilt services are always prefixed with $. In this tutorial, we are going to create our own angular service.</p>
+
+    <ul>
+        <li>Created a module named <strong>mainApp </strong>using <strong>angular.module(‘mainApp’, []);</strong></li>
+        <li>Defined a service using <strong>service</strong> method in the module and you can see how we added properties and function to the service object for getting the message. We used <code>this </code>keyword to add the properties to the service object.</li>
+        <li>Defined a service using <strong>factory </strong>method in the module and returned the service object.</li>
+        <li>Defined a service using <strong>provider </strong>method in the module and used $get() function to get the message.</li>
+        <li>Configured the provider using the <strong>config()</strong> function in the module to set the message.</li>
+        <li>Defined a controller and all the services are injected to the controller.</li>
+        <li>Set the factory and service messages.</li>
+        <li>Finally controller wire all the messages to the view using<strong> $scope.</strong></li>
+    </ul>
+</body>
+
+</html>

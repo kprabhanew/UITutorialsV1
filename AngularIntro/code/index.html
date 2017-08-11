@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Angular 1.x Intro</title>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+    <p>We are very glad to start our journey to the Super-heroic MVW framework, AngularJS, commonly referred to as Angular. </p>
+    <h2>What is AngularJS ?</h2>
+    <p>AngularJS is a <strong>client-side JavaScript framework</strong> developed by <strong><em>Google</em></strong> for adding interactivity to HTML. AngularJS is the best choice, if you want to create a responsive, easy to organize, easily testable and
+        maintainable web application.</p>
+    <h2>Prerequisites</h2>
+    <p>We assume that you are very familiar with the following:</p>
+    <ul>
+        <li>HTML</li>
+        <li>JavaScript</li>
+        <li>CSS</li>
+    </ul>
+    <p>If you are not familiar with any of these technologies, we recommend you to learn <strong>HTML</strong>, <strong>JavaScript </strong>and <strong>CSS </strong>before going through the <strong>AngularJS </strong>tutorials.</p>
+    <h2>Why AngularJS ?</h2>
+    <ul>
+        <li>Helps to build well structured applications in a modular fashion.</li>
+        <li>Helps to create responsive web applications.</li>
+        <li>Best implementation of&nbsp;MVC architecture.</li>
+        <li>Write less code.</li>
+        <li>Powerful and flexible.</li>
+        <li>Easy to learn.</li>
+        <li>Handles dependencies.</li>
+        <li>Easily integrate with other technologies.</li>
+        <li>Easy to test and maintain.</li>
+    </ul>
+    <h2>Core Features of AngularJS</h2>
+    <p>The following table illustrates the <strong>Core Features </strong>of angularJS.</p>
+    <table style="border-collapse: collapse; border-spacing: 0; line-height: 2; margin-bottom: 40px; width: 100%;">
+        <colgroup>
+            <col style="width: 213px;">
+        </colgroup>
+        <tbody>
+            <tr>
+                <th style="font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; background-color: #ffffff; color: #333333;">Core Features</th>
+                <th style="font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; background-color: #ffffff; color: #333333;">Description</th>
+            </tr>
+            <tr>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; font-weight: bold; background-color: #fd6864; color: #ffffff;">Template</td>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; text-align: left;">Templates are HTML with new markups.</td>
+            </tr>
+            <tr>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; font-weight: bold; background-color: #fd6864; color: #ffffff;">Compiler</td>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; background-color: #ffffff; text-align: left;">This is used to parse the templates and then instantiate directives and expressions.</td>
+            </tr>
+            <tr>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; font-weight: bold; background-color: #fd6864; color: #ffffff;">Directives</td>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; text-align: left;">Adds behavior to HTML with custom attributes and elements.</td>
+            </tr>
+            <tr>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; font-weight: bold; background-color: #fd6864; color: #ffffff;">Expressions</td>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; text-align: left;">Allows reading and writing variables and functions in a scope.</td>
+            </tr>
+            <tr>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; font-weight: bold; background-color: #fd6864; color: #ffffff;">Filter</td>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; text-align: left;">Filters the value of expressions.</td>
+            </tr>
+            <tr>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; font-weight: bold; background-color: #fd6864; color: #ffffff;">Scope</td>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; text-align: left;">Context where the model is stored. Expressions, directives and controllers can access it.</td>
+            </tr>
+            <tr>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; font-weight: bold; background-color: #fd6864; color: #ffffff;">Model</td>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; text-align: left;">This is where the user interacts with and the data is shown to the view.</td>
+            </tr>
+            <tr>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; font-weight: bold; background-color: #fd6864; color: #ffffff;">View</td>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; text-align: left;">This is the output. This is what user sees.</td>
+            </tr>
+            <tr>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; font-weight: bold; background-color: #fd6864; color: #ffffff;">Data Binding</td>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; text-align: left;">Sync data between model and view.</td>
+            </tr>
+            <tr>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; font-weight: bold; background-color: #fd6864; color: #ffffff;">Controllers</td>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; text-align: left;">We define our business logic for views as controllers. This controls the data flow in our application.</td>
+            </tr>
+            <tr>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; font-weight: bold; background-color: #fd6864; color: #ffffff;">Dependency Injection</td>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; text-align: left;">Deals with how objects and functions get created and wired.</td>
+            </tr>
+            <tr>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; font-weight: bold; background-color: #fd6864; color: #ffffff;">Injector</td>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; text-align: left;">Dependency injection container which is used to inject any value, factory, services to each other.</td>
+            </tr>
+            <tr>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; font-weight: bold; background-color: #fd6864; color: #ffffff;">Module</td>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; text-align: left;">Container for the directives, controllers, services, filters, which configures the Injector.</td>
+            </tr>
+            <tr>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; font-weight: bold; background-color: #fd6864; color: #ffffff;">Services</td>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; text-align: left;">This supports the “Separation of Concerns” concept. These are reusable components.</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>This table briefly mentions the core features of AngularJS framework.</p>
+    <h2>Download AngularJS</h2>
+    <p>You can download AngularJS from the official web site by following this link <a title="download AngularJS" href="https://angularjs.org/" target="_blank">Download</a>.</p>
+    <p>You will see a page similar like this and hit download.</p>
+    <img src="images/angular-org.jpg" title="angualrjs" />
+    <p>There are two branches available for download. <strong>Legacy version</strong>, the stable version and <strong>Latest version</strong>, the unstable version of AngularJS. You can select any of the <strong>minified</strong>, <strong>uncompressed </strong>or
+        <strong>zipped </strong>versions of angular. You can also find the <a title="CDN" href="https://en.wikipedia.org/wiki/Content_delivery_network" target="_blank">CDN </a>of the latest angular version in the image shown below.</p>
+    <img src="images/angular-download.jpg" title="angualrjs" />
+    <p>We will go with the stable and minified version of angularJS. Click on the download button and save the file in your folder.</p>
+    <h3>Include AngularJS</h3>
+    <p>You have to include the downloaded JavaScript file ( <em><strong>angular.min.js</strong> </em>) in the&nbsp;HTML document to&nbsp;use angularJS.</p>
+    <p>The following HTML shows how to <strong>include angular.min.js.</strong></p>
+    <pre>
+        &lt;!doctype html&gt;
+            &lt;html&gt;
+            &lt;head&gt;
+                &lt;script type=&quot;text/javascript&quot; src=&quot;angular.min.js&quot;&gt;&lt;/script&gt;
+            &lt;/head&gt;
+            &lt;body&gt;
+            &lt;/body&gt;
+        &lt;/html&gt;
+    </pre>
+    <p>You can also use the <strong>CDN</strong> but make sure to check with the angularJS website for the latest version.</p>
+    <pre>
+        &lt;!doctype html&gt;
+            &lt;html&gt;
+            &lt;head&gt;
+                &lt;script type=&quot;text/javascript&quot; src=&quot;https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js&quot;&gt;&lt;/script&gt;
+            &lt;/head&gt;
+            &lt;body&gt;
+            &lt;/body&gt;
+        &lt;/html&gt;
+    </pre>
+    <h2>Hello World Example</h2>
+    <p>Now we are going to write our first AngularJS application. We have gone through the following steps to create our first Angular application:</p>
+    <ul>
+        <li>First step is to Include angularJS file in the HTML document. You can use <strong>angular.min.js </strong>or the<strong> CDN.</strong></li>
+        <li>Second step is to indicate the active portion of angular application. The directive <code>ng-app&nbsp;</code>&nbsp; tells the Angular which part of our document belongs to the angular application.</li>
+        <li>The directive <code>ng-model</code> and <code>ng-bind</code> is to bind the input text value to the specified HTML<br> element. We will explain these concepts in the coming posts. For now, just say hello to your first angular application.</li>
+    </ul>
+    <p>angular-helloworld1.html</p>
+    <pre>
+        &lt;!DOCTYPE html&gt;
+            &lt;html lang=&quot;en&quot;&gt;
+            &lt;title&gt;AngularJS First Application&lt;/title&gt;
+            
+            &lt;head&gt;
+                &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js&quot;&gt;&lt;/script&gt;
+            &lt;/head&gt;
+            
+            &lt;body&gt;
+            &lt;div ng-app&gt;
+            
+            &lt;p&gt;Enter Some text : &lt;input type=&quot;text&quot; ng-model=&quot;someText&quot;&gt;&lt;/p&gt;
+            &lt;p&gt;Hello &lt;span ng-bind=&quot;someText&quot;&gt;&lt;/span&gt;!&lt;/p&gt;
+            
+            &lt;/div&gt;
+            &lt;/body&gt;
+        &lt;/html&gt;
+    </pre>
+    <p>The <code>ng-bind</code> directive tells Angular to replace the text of the element with the given value , and&nbsp; it is updated&nbsp; with change in the value of that expression.</p>
+    <p>Typically, we do not use the <code>ng-bind</code> directive directly in our document. We wrap the model value in double curly braces like<strong> {{some-expression}}. </strong>The following example demonstrates how the model value is wrapped inside
+        the double curly braces. You will see the same result in your browser.</p>
+    <p>angular-helloworld2.html</p>
+    <pre>
+    &lt;!DOCTYPE html&gt;
+        &lt;html lang=&quot;en&quot;&gt;
+        &lt;title&gt;AngularJS First Application&lt;/title&gt;
+        
+        &lt;head&gt;
+            &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js&quot;&gt;&lt;/script&gt;
+        &lt;/head&gt;
+        
+        &lt;body&gt;
+        &lt;div ng-app&gt;
+        
+        &lt;p&gt;Enter Some text : &lt;input type=&quot;text&quot; ng-model=&quot;someText&quot;&gt;&lt;/p&gt;
+        &lt;p&gt;Hello {{ someText }}!&lt;/p&gt;
+        
+        &lt;/div&gt;
+        &lt;/body&gt;
+    &lt;/html&gt;
+</pre>
+    <p>This is your first angular application. I hope you got a brief idea about the angular directives like <code>ng-app,</code> <code>ng-model</code> and <code>ng-bind</code>. We will give you a detailed explanation of all the core features of angularJS
+        in this series of angular tutorials</p>
+</body>
+
+</html>

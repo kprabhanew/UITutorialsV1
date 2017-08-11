@@ -1,0 +1,17 @@
+Explains and demonstrates the concept of AngularJS Watchers along with the usage of $watch, $watchGroup, $watchCollectiona and ng-change
+
+Description
+
+The Video explains and demonstrates the following:
+
+-What is AngularJS Watcher (or watch)
+-What is $watch and why is it necessary
+-What is watch listener
+-How is $watch used
+-How to monitor watch counts
+-How to use ng-change
+-Differences between $watch vs. $watchCollection vs. $watchGroup
+-Various types of AngularJS Watches
+-What is deep watch or Equality watch
+-Can I have multiple watches?
+-Reference watch vs. Equality watch vs. Collection watch

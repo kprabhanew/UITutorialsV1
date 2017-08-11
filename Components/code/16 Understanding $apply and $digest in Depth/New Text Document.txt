@@ -1,0 +1,17 @@
+Explains and demonstrates $apply and $digest in AngularJs
+
+Description
+
+Following are the topics covered as part of the video:
+
+-What is $apply
+-What is $digest
+-$apply vs $digest
+-When is Angular JS digest cycle invoked and when not
+-How to kick-in Angular JS digest cycle manually
+-How to work with events external to Angular JS (Context)
+-How to modify scope variables from jQuery (or external) events
+-How to update DOM when scope variables are modified outside Angular JS (Context)
+-How to update DOM when using jQuery events in Angular JS
+-Using $apply and $digest in Custom Directives
+-How do $apply and $differ in ng-repeat

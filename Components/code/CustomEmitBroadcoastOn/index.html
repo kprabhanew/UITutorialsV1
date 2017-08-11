@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+
+    <style>
+        body {
+            font-size: 17px;
+            padding: 10px;
+        }
+        
+        p {
+            padding: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Use $Broadcast(), $Emit() And $On() In AngularJS</h1>
+    <p>AngularJS applications may need to communicate across the controllers. Such a communication might be needed to send notifications or to pass data between the controllers. </p>
+    <p>Although there can be different approaches to achieve this goal, one that is readily available is the event system of <strong>$scope and $rootScope.</strong> </p>
+    <p>Both of these objects - $scope and $rootScope - support three methods namely <strong>$broadcast(), $emit() and $on()</strong> that facilitate event driven publisher-subscriber model for sending notifications and passing data between the controllers.</p>
+    <p>In this article I will discuss how to <u>raise events using $broadcast() and $emit()</u> and then how <u>to handle those events using $on().</u></p>
+    <h2>Overview of $broadcast(), $emit() and $on()</h2>
+    <p>$broadcast() as well as $emit() allow you to raise an event in your AngularJS application.</p>
+    <ul>
+        <li>That means <strong>$broadcast()</strong> sends an even downwards from parent to child controllers. </li>
+        <li>The <strong>$emit()</strong> method, on the other hand, does exactly opposite. It sends an event upwards from the current controller to all of its parent controllers.</li>
+    </ul>
+    <code>
+        <strong>
+        $scope.$broadcast("MyEvent",data);<br>
+        $scope.$emit("MyEvent",data); 
+        </strong>
+    </code>
+    <p>Here, <strong>MyEvent</strong> is the developer defined name of the event that you wish to raise.</p>
+    <p>The optional <strong>data</strong> parameter can be <u>any type of data that you wish to pass</u> when MyEvent is dispatched by the system. </p>
+    <p> <strong>For example,</strong> if you wish to pas data from one controller to another that data can go as this second parameter.</p>
+    <p>An event raised by $broadcast() and $emit() can be handled by wiring an <u>event handler</u> using $on() method. </p>
+    <pre>
+        <strong>
+        $scope.$on("MyEvent", function(evt,data){ 
+                    // handler code here 
+                });
+        </strong>
+    </pre>
+    <h3>Event system on $scope and $rootScope</h3>
+    <p>When it comes to communicating between two or more AngularJS controllers there can be two possible arrangements:</p>
+    <ul>
+        <li>Controllers under consideration are nested controllers. That means they have parent-child relationship.[<u>In this case you will use $broadcast(), $emit() and $on() on the <strong>$scope</strong> object</u>]</li>
+
+        <li>Controllers under consideration are sibling controllers. That means they are at the same level without any parent-child relationship. - [<u>In this you will use these methods on the
+            <strong>$rootScope</strong> object </u>]</li>
+    </ul>
+    <h2>Nested controllers</h2>
+    <p>The example achieves communication and passes data between controllers having <u>parent-child relationship.</u></p>
+    <p>How $broadcast(), $emit() and $on() can be used with nested controllers</p>
+    <p>Both the events send a string data ("some data") when the corresponding event is dispatched. You can easily substitute an object instead of string data. Upon handling the respective events a message is shown inside each just to confirm that the handler
+        has indeed executed and the data is received successfully.</p>
+    <strong>index.html</strong>
+    <pre>
+        &lt;!DOCTYPE html&gt;
+        &lt;html&gt;
+
+        &lt;head&gt;
+            &lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.js"&gt;&lt;/script&gt;
+            &lt;script src="app.js"&gt;&lt;/script&gt;
+            &lt;style&gt;
+                .ng-scope {
+                    padding: 10px;
+                    border: 1px solid #eee;
+                }
+            &lt;/style&gt;
+        &lt;/head&gt;
+
+        &lt;body ng-app="MyApp"&gt;
+            &lt;h1&gt;$emit $Broadcast $on&lt;/h1&gt;
+            &lt;div ng-controller="MyController1"&gt;
+                &lt;input type="button" value="Broadcast Down" ng-click="OnClick($event)" /&gt;
+                &lt;h4&gt;{{Message}}&lt;/h4&gt;
+                &lt;div ng-controller="MyController2"&gt;
+                    &lt;h4&gt;{{Message}}&lt;/h4&gt;
+                    &lt;div ng-controller="MyController3"&gt;
+                        &lt;h4&gt;{{Message}}&lt;/h4&gt;
+                        &lt;input type="button" value="Emit Up" ng-click="OnClick($event)" /&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/body&gt;
+
+        &lt;/html&gt;
+    </pre>
+    <p>MyController1 does three things. </p>
+    <ol>
+        <li>Firstly, it raises SendDown event using $broadcast() method.</li>
+        <li>Secondly, MyController1 handles SendData event using $on(). </li>
+        <li>Thirdly, MyController1 handles SendUp event.</li>
+    </ol>
+    <strong>app.js</strong>
+    <pre>
+var app = angular.module("MyApp", []);
+
+app.controller("MyController1", function($scope, $rootScope) {
+
+    //broadcast the event down
+    $scope.OnClick = function(evt) {
+        $scope.$broadcast("SendDown", "some data");
+    }
+
+    //handle SendDown event
+    $scope.$on("SendDown", function(evt, data) {
+        $scope.Message = "Inside SendDown handler of MyController1 : " + data;
+    });
+
+    //handle SendUp event
+    $scope.$on("SendUp", function(evt, data) {
+        $scope.Message = "Inside SendUp handler of MyController1 : " + data;
+    });
+});
+
+app.controller("MyController2", function($scope, $rootScope) {
+
+    //handle SendDown event
+    $scope.$on("SendDown", function(evt, data) {
+        $scope.Message = "Inside SendDown handler of MyController2 : " + data;
+    });
+
+    //handle SendUp event
+    $scope.$on("SendUp", function(evt, data) {
+        $scope.Message = "Inside SendUp handler of MyController2 : " + data;
+    });
+
+});
+
+app.controller("MyController3", function($scope, $rootScope) {
+
+    //handle SendDown event
+    $scope.$on("SendDown", function(evt, data) {
+        $scope.Message = "Inside SendDown handler of MyController3 : " + data;
+    });
+
+    //emit SendUp event up
+    $scope.OnClick = function(evt) {
+        $scope.$emit("SendUp", "some data");
+    }
+
+    //handle SendUp event
+    $scope.$on("SendUp", function(evt, data) {
+        $scope.Message = "Inside SendUp handler of MyController3 : " + data;
+    });
+});
+    </pre>
+
+    <h2>Sibling controllers</h2>
+    <p>if you wish to achieve the communication between <u>sibling controllers</u>? </p>
+    <p>If so, you need to use $rootScope instead of $scope. That's because since there is no parent-child relationship, <u>each controller will have its own scope and there won't be any inherited scope as in the previous example.</u> </p>
+
+    <p>Moreover, $emit() won't serve much purpose in case of sibling controllers. This is because $rootScope is a container scope for all the other scopes and can dispatch events only to its child controllers. So, only $broadcast() will serve some useful
+        purpose in this case.
+    </p>
+
+    <strong>app.js</strong>
+    <pre>
+var app = angular.module("MyApp", []);
+
+app.controller("MyController1", function($scope, $rootScope) {
+    //raise event on $rootScope
+    $scope.OnClick = function(evt) {
+        $rootScope.$broadcast("SendDown", "some data");
+    }
+
+    //event handler
+    $scope.$on("SendDown", function(evt, data) {
+        $scope.Message = "Inside MyController1 : " + data;
+    });
+
+});
+
+app.controller("MyController2", function($scope, $rootScope) {
+    //event handler
+    $scope.$on("SendDown", function(evt, data) {
+        $scope.Message = "Inside MyController2 : " + data;
+    });
+
+});
+
+app.controller("MyController3", function($scope, $rootScope) {
+    //event handler
+    $scope.$on("SendDown", function(evt, data) {
+        $scope.Message = "Inside MyController3 : " + data;
+    });
+});
+    </pre>
+    <p>As before there are three controllers but they are siblings. The topmost (MyController1) has Broadcast button that raises SendDown event on $rootScope object. All the controllers handle the SendData event and set Message property on their individual
+        $scope object. </p>
+    <p>As you can see, this time $broadcast() is called on $rootScope object to raise SendDown event. SendDown is handled by individual $scope objects as before.</p>
+</body>
+
+</html>

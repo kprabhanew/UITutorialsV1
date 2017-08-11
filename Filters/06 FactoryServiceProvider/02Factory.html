@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="style.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="02Factory.js"></script>
+    <style>
+        body {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body ng-app="MyModule">
+    <h2>A Factory</h2>
+    <p>For example let’s do that by returning an object that contains a function called getValue(). </p>
+    <p>Now there are several ways you can create an object in JavaScript, we’re going to use the <strong>Object Constructor</strong> approach where we create a function that populates an object with properties and functions and uses the new keyword to instantiate
+        it.
+    </p>
+    <div ng-controller="MyController"></div>
+    <div ng-controller="MyController2"></div>
+
+    <hr>
+    <p>In our example we create the “Object Constructor” function MyObject(), but since we’re only instantiating it in one place we can use an anonymous function instead.</p>
+    <div ng-controller="MyCtrl"></div>
+    <div ng-controller="MyCtrl2"></div>
+</body>
+
+</html>

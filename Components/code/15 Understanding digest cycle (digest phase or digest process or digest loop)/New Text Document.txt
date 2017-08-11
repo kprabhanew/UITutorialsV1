@@ -1,0 +1,20 @@
+Brief
+
+Explains and demonstrates the complete process of digest cycle in Angular JS
+
+Description
+
+The video covers the following:
+
+-What is AngularJS Watch and Watch list
+-How are scopes associated to Watch list
+-What is Angular Context
+-What is digest cycle
+-What are digest iterations (min and max)
+-When are Watch listeners executed
+-What is digest process / phase in Angular JS
+-When does digest process kick in
+-What events may kick in digest process
+-How are digest process / iterations, watch list and scope related
+-At what point DOM gets updated / rendered
+-What is Event loop
