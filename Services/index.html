@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Angular 1.x Intro</title>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+    <h1>AngularJS Services Example Tutorial</h1>
+    <p>Angular services are singleton objects that carry out some sort of task and you also use services to organize and share code across your application.</p>
+    <p>Angular Services follow the Single Responsibility Principle (SRP) and are wired together using dependency injection (DI). The Single Responsibility principle ensures that each object will have only a single responsibility.</p>
+    <p>For Example, controllers are responsible for wiring model data to views. It will violate the Single Responsibility Principle, if we use controllers to carry out some other logic. Therefore, the business logic should be abstracted out into services
+        and they are injected when needed. This makes the application more manageable and testable.</p>
+    <p>Angular offers several useful services like <strong>$http, $log, $filter</strong> etc. The inbuilt services are always prefixed with $. In this tutorial, we are going to create our own angular service.</p>
+    <h2>Creating and Registering Angular Services</h2>
+    <p>Services are created by registering them with the module they are going to operate in.<br> There are three ways to create an angular service. They are using <strong>Factory, Service and Provider.</strong><br> First, create a module named <strong>app </strong>using
+        the following syntax:</p>
+    <p>var app = angular.module("app", []);</p>
+    <h3>Using Factory</h3>
+    <p>The most common way to create a service is by using the Module’s Factory API. We use the factory method to create an object, add properties to it and return the same object. Later it can be injected to the components like controller, service, filter
+        or directive.</p>
+    <p>Here is the general syntax for using <code>Factory </code>service.</p>
+    <h3>Using Service</h3>
+    <p>This is instantiated with the new keyword. You will be provided with an instance of the function passed to the service. This object instance becomes the service object that AngularJS registers and is injected to the required components. We use this
+        keyword to add properties and functions to this service object. Unlike factory method, this does not return anything.</p>
+    <p>Here is the general syntax for using <code>Service</code></p>
+    <p>app.service('serviceName',function(){ });</p>
+    <h3>Using Provider</h3>
+    <p>Providers are the only service you can pass into your <strong>.config()</strong> function. Providers are used when you want to provide module-wide configuration for your service object before making it available. It returns value by using <strong>$get()</strong>        function.</p>
+    <p>Here is the general syntax for creating and configuring a <code>Provider</code>.</p>
+    <pre>
+        // syntax for creating a provider
+        app.provider('providerName',function(){ });
+        
+        //syntax for configuring a provider
+        app.config(function(providerNameProvider){});
+    </pre>
+    <h2>AngularJS Services Example</h2>
+    <p>The following example demonstrates the usage of factory, service and provider services. We are going to develop a sample message service, which prints out a message using all these service APIs.</p>
+    <p>The code shown below (index.html) is our view. We need to get the <strong>serviceMsg, factoryMsg</strong> and <strong>providerMsg</strong> using the Service APIs and we use controller to wire the data to this view.</p>
+    <p>index.html</p>
+    <pre>
+        &lt;html&gt;
+            &lt;head&gt;
+                &lt;title&gt;AngularJS Services Tutorial&lt;/title&gt;
+                &lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular.min.js"&gt;&lt;/script&gt;
+                &lt;script src="main.js"&gt;&lt;/script&gt;
+            &lt;/head&gt;
+            &lt;body&gt;
+            &lt;div&gt;
+                &lt;div ng-app="mainApp" ng-controller="myController"&gt;
+                    &lt;p&gt;&lt;b&gt;Message From Service: &lt;/b&gt;{{serviceMsg}}&lt;/p&gt;
+                    &lt;p&gt;&lt;b&gt;Message From Factory: &lt;/b&gt;{{factoryMsg}}&lt;/p&gt;
+                    &lt;p&gt;&lt;b&gt;Message From Provider:&lt;/b&gt;{{providerMsg}}&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            
+            &lt;/body&gt;
+    </pre>
+    <p>The code shown below defines the services and the controller used in the application.</p>
+    main.js
+    <pre>
+        var app = angular.module('mainApp', []);
+ 
+        //define a service named myService
+        app.service('myService', function () {
+            this.message = '';
+            this.setMessage = function (newMessage) {
+                this.message = newMessage;
+                return this.message;
+            };
+        });
+        
+        //define factory  named 'myFactory'
+        app.factory('myFactory', function () {
+            var obj = {};
+            obj.message = '';
+            obj.setMessage = function (newMessage) {
+                obj.message = newMessage;
+            };
+            return obj;
+        });
+        
+        //Defining a provider 'configurable'
+        app.provider('configurable', function () {
+            var returnMessage = '';
+            this.setMessage = function (newMessage) {
+                returnMessage = newMessage;
+            };
+            this.$get = function () {
+                return {
+                    message: returnMessage
+                };
+            };
+        });
+        
+        //configuring provider
+        app.config(function (configurableProvider) {
+            configurableProvider.setMessage("Hello, I'm From Provider");
+        });
+        
+        //defining controller
+        app.controller('myController', function ($scope, myService, myFactory, configurable) {
+            $scope.serviceMsg = myService.setMessage("Hello, I'm From Service");
+        
+            myFactory.setMessage("Hello, I'm From Factory ");
+            $scope.factoryMsg = myFactory.message;
+        
+            $scope.providerMsg= configurable.message;
+        });
+    </pre>
+    <h3>Code Description</h3>
+    <ul>
+        <li>Created a module named <strong>mainApp </strong>using <strong>angular.module(‘mainApp’, []);</strong></li>
+        <li>Defined a service using <strong>service</strong> method in the module and you can see how we added properties and function to the service object for getting the message. We used <code>this </code>keyword to add the properties to the service object.</li>
+        <li>Defined a service using <strong>factory </strong>method in the module and returned the service object.</li>
+        <li>Defined a service using <strong>provider </strong>method in the module and used $get() function to get the message.</li>
+        <li>Configured the provider using the <strong>config()</strong> function in the module to set the message.</li>
+        <li>Defined a controller and all the services are injected to the controller.</li>
+        <li>Set the factory and service messages.</li>
+        <li>Finally controller wire all the messages to the view using<strong> $scope.</strong></li>
+    </ul>
+</body>
+
+</html>

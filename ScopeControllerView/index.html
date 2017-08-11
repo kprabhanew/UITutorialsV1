@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Angular 1.x Intro</title>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+    <p>Now we will shift our focus to the <strong>Model View Controller (MVC)</strong> part of AngularJS. We will discuss about the Controller, View and the Scope (view model) in this tutorial.</p>
+    <ul>
+        <li><a href="#controller"> Controller, Scope and View Concepts </a></li>
+        <li><a href="#guidelines">Guidelines</a></li>
+        <li><a href="#examples">Controller and Scope Example</a></li>
+    </ul>
+    <h2>Controller, Scope and View Concepts</h2>
+    <p><strong>Controllers </strong>are JavaScript objects that controls the view data of angular applications. We use controllers to control the data that are bound to the View and <strong>Scope </strong>acts as glue between the <strong>View </strong>and<strong>Controller</strong>.</p>
+    <!--<p><strong>Controllers </strong>are JavaScript objects that controls the view data of angular applications. In the <a href="http://www.journaldev.com/5955/angularjs-directives-data-binding-example-tutorial" title="AngularJS Directives and Data Binding Example Tutorial" target="_blank">previous post</a>, we looked at some of the Angular directives and the data binding concepts. We use controllers to control the data that are bound to the View and <strong>Scope </strong>acts as glue between the <strong>View </strong>and <strong>Controller</strong>.</p>-->
+    <p>The directive <code>ng-controller</code> is used to attach the application controller to the DOM and angular will instantiate a new controller object and a new child scope will be available to the constructor of the controller. The new child scope
+        can be injected into constructor as <code>$scope.</code></p>
+    <p><strong>Scope </strong>is an execution context for the angular <strong>expressions </strong>and it can watch expressions and propagate events. Scopes also provides APIs to watch the changes in the <strong>model </strong>and <strong>view</strong>.
+        Scope ties the view to the controller so that it does not need to know the view and the view does not need to know about the controller.</p>
+    <h2>Guidelines</h2>
+    <p><a title="Angular Controller guidelines" href="https://docs.angularjs.org/guide/controller" rel="nofollow" target="_blank">AngularJS official documentation</a> provides the following <strong>guidelines </strong>to use the controllers in the angular
+        applications.
+    </p>
+    <ul>
+        <li>Use controllers to set up the initial state of the $scope object and add behavior to that object.</li>
+        <li>Do not use controllers to manipulate DOM. It should contain only business logic. Use <strong>Data Binding</strong> and <strong>Directives</strong> for DOM manipulation.</li>
+        <li>Do not use controllers to format inputs – Use <strong>Angular Form controls.</strong></li>
+        <li>Do not use to filter output – Use <strong>Angular Filters.</strong></li>
+        <li>Do not use controllers to share code or state across controllers – Use <strong>Angular Services.</strong></li>
+        <li>Do not manage the life cycle of other components using controllers.</li>
+    </ul>
+    <p>We will see features like Angular<strong> Form controls</strong>, <strong>Filters</strong> and <strong>Services</strong> in the upcoming tutorials.</p>
+    <h2>Controller and Scope Examples</h2>
+    <p>In this section, we will show how to define controllers in your angular applications.</p>
+    <h3>Simple Usage of Controller and Scope</h3>
+    <p>The following example demonstrates the <strong>Controller </strong>and <strong>Scope </strong>concept. Here, we will see how controllers sets the <strong>initial state</strong> of a $scope object.</p>
+    <p>angular-controller.html</p>
+    <pre>
+        &lt;!DOCTYPE html&gt;
+            &lt;html&gt;
+            
+            &lt;head&gt;
+            &lt;title&gt; AngularJS - Controllers and Scope&lt;/title&gt;
+            &lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"&gt;&lt;/script&gt;
+            &lt;/head&gt;
+            
+            &lt;body&gt;
+            
+            &lt;div ng-app="" ng-controller="blogController"&gt;
+            
+                First Name: &lt;input type="text" ng-model="firstName"&gt;&lt;br&gt;
+                Last Name: &lt;input type="text" ng-model="lastName"&gt;&lt;br&gt;
+                &lt;br&gt;
+                Full Name: {{firstName + " " + lastName}}
+                &lt;br&gt;
+                Blog Name : {{blogName }}
+            
+            &lt;/div&gt;
+            
+            &lt;script&gt;
+            //Controller
+            function blogController($scope) {
+                    $scope.firstName = "Pankaj",
+                    $scope.lastName = "Kumar",
+                    $scope.blogName = "JournalDev"
+            }
+            
+            &lt;/script&gt;
+            
+            &lt;/body&gt;
+            &lt;/html&gt;
+    </pre>
+    <p><strong>Application Details:</strong></p>
+    <ul>
+        <li>The <code>ng-controller</code> directive is used to attach the the <strong>Controller</strong> ( <strong><em>blogController</em></strong>, in the above example) to the DOM.</li>
+        <li>A new child scope will be available as a parameter to the to the Controller’s constructor function as <code>$scope.</code></li>
+        <li>The Controller (<strong><em>blogController</em></strong>) set up the initial state of the <code>$scope</code> object. In our example, we set the initial state by attaching properties like <strong><em>firstName</em></strong>, <strong><em>lastName </em></strong>and
+            <strong><em>blogName </em></strong></li>
+        <li>We use ng-model directive to bind the input fields to the <strong><em>blogController </em></strong>properties.</li>
+    </ul>
+    <h2>Adding behavior to Controller</h2>
+    <p>The following example demonstrates how to add <strong>behaviour</strong> to controllers. In Angular, we add behavior to the scope by attaching <strong>methods </strong>to the <code>$scope</code> object.</p>
+    <p>In the following example we attach the <code>addEmployee() </code>method to add a new behaviour to the controller. A new item will be pushed to the array of <strong><em>names</em></strong> when we click on the Add button.</p>
+    <p>controller-methods.html</p>
+    <pre>
+        &lt;!DOCTYPE html&gt;
+            &lt;html ng-app&gt;
+            &lt;head&gt;
+            &lt;title&gt;AngularJS - Controllers and Scope&lt;/title&gt;
+            &lt;script type="text/javascript"
+                src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"&gt;&lt;/script&gt;
+            &lt;/head&gt;
+            &lt;body&gt;
+            
+            &lt;div ng-controller="EmployeeController"&gt;
+            
+                Employee Name : &lt;input type="text" ng-model="newEmployee"/&gt;
+                &lt;button ng-click="addEmployee()"&gt;Add&lt;/button&gt;
+                &lt;h2&gt;Employees&lt;/h2&gt;
+            
+                &lt;ul&gt;
+                    &lt;li ng-repeat="name in names"&gt; {{ name }} &lt;/li&gt;
+                &lt;/ul&gt;
+            
+            &lt;/div&gt;
+            &lt;script&gt;
+            
+                function EmployeeController($scope) {
+                    $scope.names = [ "Elano Blumer","Iain Hume"];
+            
+                    $scope.addEmployee = function() {
+                        $scope.names.push($scope.newEmployee);
+                        $scope.newEmployee = "";
+                    }
+                }
+            &lt;/script&gt;
+            &lt;/body&gt;
+            &lt;/html&gt;
+    </pre>
+    <p><strong>Application Details:</strong></p>
+    <ul>
+        <li>The <code>ng-controller</code> directive is used to attach the the <strong>Controller</strong> ( <strong><em>EmployeeController</em></strong>, in the above example) to the DOM.</li>
+        <li>A new child scope will be available as a parameter to the to the Controller’s constructor function as <code>$scope.</code></li>
+        <li>The Controller (<strong><em>EmployeeController</em></strong>) set up the initial state of the <code>$scope</code> object. In our example, we set the initial state of the $scope with array of <strong><em>names</em></strong>.</li>
+        <li>We use<code> ng-repeat</code> directive to iterate over the employee names array.</li>
+        <li>We have attached addEmployee() method to add a behaviour to the above application. This line of code (<code>$scope.names.push($scope.newEmployee);</code>) will push new items in the input field to the <strong><em>names </em></strong>array when
+            we click on the <strong>Add </strong>button.</li>
+        <li>The <code>ng-click</code> directive allows you to specify custom behavior when an element is clicked.</li>
+    </ul>
+    <h2>Using Controllers in External File</h2>
+    <p>The following example demonstrates how to store and include controllers in external files</p>
+    <p>In the example, we have created a JavaScript file ( <strong>placeController.js</strong> ) to store the controller used in the application.</p>
+    <p>placeView.html</p>
+    <pre>
+    &lt;!DOCTYPE html&gt;
+        &lt;html ng-app&gt;
+        &lt;head&gt;
+        &lt;script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"&gt;
+        &lt;/script&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+            &lt;div data-ng-controller="PlaceController"&gt;
+                Country:&lt;input type="text" ng-model="countryName"/&gt;
+                City:&lt;input type="text" ng-model="cityName"/&gt;
+                &lt;button ng-click="addItem()"&gt;Add&lt;/button&gt;
+                &lt;ul&gt;
+                    &lt;li ng-repeat="item in list"&gt;{{ item.country +"  : "+ item.city}}&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+            &lt;script src="placeController.js"&gt;&lt;/script&gt;
+        &lt;/body&gt;
+    &lt;/html&gt;
+</pre>
+    <p>The controller used in the application, <strong>placeController.js</strong></p>
+    <p>placeController.js</p>
+    <pre>
+        function PlaceController($scope) {
+        $scope.list = [
+            { country: 'India',   city: 'New Delhi' },
+            { country: 'France',  city: 'Paris' },
+            { country: 'USA',     city: 'Washington DC' },
+            { country: 'England', city: 'London' }
+        ];
+    
+        $scope.addItem = function () {
+            $scope.list.push({ country: $scope.countryName,
+                    city: $scope.cityName });
+        };
+    }
+    </pre>
+    <p>You will see the following output in your browser. Enter country name and city and then click on add button. You will see the added names in the list shown below.</p>
+    <strong>Application Detail</strong>
+    <ul>
+        <li>The <code>ng-controller</code> directive is used to attach the the <strong>Controller</strong> ( <strong><em>PlaceController</em></strong> stored in placeontroller.js, in the above example) to the DOM.</li>
+        <li>A new child scope will be available as a parameter to the to the Controller’s constructor function as <code>$scope.</code></li>
+        <li>The Controller (<strong><em>PlaceController</em></strong>) set up the initial state of the <code>$scope</code> object.</li>
+        <li>We use<code> ng-repeat</code> directive to iterate over the object list.</li>
+        <li>We have attached addItem() method to add a behaviour to the above application. This line of code (<code>$scope.list.push({ country: $scope.countryName, city: $scope.cityName });</code>) will push new items in the input field to the <strong><em>list </em></strong>of
+            objects when we click on the <strong>Add </strong>button.</li>
+        <li>The <code>ng-click</code> directive allows you to specify custom behavior when an element is clicked.</li>
+    </ul>
+    <p>In this tutorial, we demonstrated the use of controllers to set up the initial state of the $scope object and add behavior to that object.</p>
+</body>
+
+</html>
