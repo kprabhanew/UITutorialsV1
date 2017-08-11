@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Angular Intro</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <script src="http://code.angularjs.org/1.2.13/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<body ng-app="app">
+    <div class="row">
+        <div class="col-sm-12 well">
+            header
+        </div>
+    </div>
+    <div class="row" style="height:500px;">
+        <div class="col-sm-3 well" style="height:100%">
+            <ul>
+                <li><a href="#/">Home</a></li>
+                <!--<li><a href="#/first-msg">First</a></li>-->
+                <li><a ui-sref="firstmessage()">First</a></li>
+                <li><a href="#/second-msg">Second</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 well" style="height:100%">
+            <div ui-view></div>
+        </div>
+    </div>
+</body>
+
+</html>

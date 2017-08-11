@@ -1,0 +1,12 @@
+<h2>Calc Page</h2>
+<div>
+    a = <input type="text" ng-model="a" />
+    <br><br> b = <input type="text" ng-model="b" />
+    <button ng-click="doAdd()">Add</button>
+    <button ng-click="doMultiply()">Multiply</button>
+
+    <!-- this message needs to be shown in previous state not in current state -->
+    <div ng-show="isLoading == true">
+        <span style="color:red;">Loading....Please wait...</span>
+    </div>
+</div>

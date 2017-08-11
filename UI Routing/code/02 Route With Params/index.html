@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Angular Intro</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/angular-ui-router.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<body ng-app="app">
+    <div class="row">
+        <div class="col-sm-12 well">
+            header |
+            <a href="#/">Home</a>
+        </div>
+    </div>
+    <div class="row" style="height:500px;">
+        <div class="col-xs-6 well" style="height:100% ;  overflow-y:auto;">
+            <ul>
+
+                <li><a href="#/first-msg/20/30">First</a></li>
+                <li><a href="#/second-msg/200/300">Second</a></li>
+                <li><a href="#/third-msg">Msg3-no-param</a> </li>
+                <li><a href="#/third-msg/10">Msg3-one-param</a> </li>
+                <li><a href="#/third-msg/10/4">Msg3-two-param</a> </li>
+                <li><a href="#/fourth-msg/20/30">Msg4-two-param</a> </li>
+                <li><a href="#/fifth-msg//">Msg5-no-param</a> </li>
+                <!--use slash at the end-->
+                <li><a href="#/fifth-msg/5/">Msg5-one-param</a> </li>
+                <!--remove slash at the end -->
+                <li><a href="#/sixth-msg/">Msg6-no-param</a> </li>
+                <li><a href="#/sixth-msg/5">Msg6-one-param</a> </li>
+                <!--squash parameters end -->
+                <li><a href="#/seventh-msg/-/60">Msg7-no-param</a> </li>
+                <li><a href="#/seventh-msg/5/~">Msg7-one-param</a> </li>
+
+                <li><a href="#/eigth-msg">Msg8-no-param</a> </li>
+                <li><a href="#/eigth-msg?a=50">Msg8-one-param</a> </li>
+                <li><a href="#/eigth-msg?a=50&b=100">Msg8-two-param</a> </li>
+                <li><span>&nbsp;</span></li>
+                <li><a ui-sref="firstmessage({a:10, b:40})">First - Sref</a></li>
+                <li><a ui-sref="secondmessage({c:200, d:400})">Second - Sref</a></li>
+                <li><a ui-sref="thirdmessage({a:null, b:null})">Msg3-no-param</a></li>
+                <!--<li><a ui-sref-opts="{inherit: false}" ui-sref="thirdmessage()">Msg3-no-param</a></li>-->
+                <li><a ui-sref="thirdmessage({a:10, b:null})">Msg3-one-param</a></li>
+                <li><a ui-sref="thirdmessage2({a:20, b:30})">Msg3-two-param</a></li>
+                <li><a ui-sref="fourthmessage({a:40, b:50})">Msg4-two-param</a></li>
+
+                <li><a ui-sref="fourthmessage({a:null, b:50})">Msg4-one-param-b</a></li>
+                <li><a ui-sref="fourthmessage({a:30, b:null})">Msg4-one-param-a</a></li>
+                <li><a ui-sref="fourthmessage({a:null, b:null})">Msg4-no-param</a></li>
+
+                <li><a ui-sref="fifthmessage({a:null, b:null})">Msg5-no-param</a></li>
+                <li><a ui-sref="eigthmessage({a:null, b:null})">Msg8-no-param</a></li>
+                <li><a ui-sref="eigthmessage({a:50, b:null})">Msg8-one-param</a></li>
+                <li><a ui-sref="eigthmessage({a:50, b:100})">Msg8-tow-param</a></li>
+
+            </ul>
+        </div>
+        <div class="col-xs-6 well" style="height:100%">
+            <div ui-view></div>
+        </div>
+    </div>
+</body>
+
+</html>
