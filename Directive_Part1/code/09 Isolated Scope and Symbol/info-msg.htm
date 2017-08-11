@@ -1,0 +1,15 @@
+<div>
+    <!--Local p,q as part of isolated scope for directive-->
+    p = {{p}}, q = {{q}}
+    <br>p: <input ng-model="p" />
+    <br>q: <input ng-model="q" />
+    <br>
+    <!-- first way (with first way in template-->
+    <button ng-click="extSum()(p,q)">Sum</button>
+
+    <!-- sceond way (with sceond way in template-->
+    <!--<button ng-click="extSum({m:p,n:q})">Sum</button>-->
+
+    <button ng-click="doProcess()">Sum</button>
+
+</div>
