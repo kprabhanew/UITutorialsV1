@@ -1,0 +1,19 @@
+
+https://egghead.io/courses
+AngularJS2
+==========
+
+Write Your First Directive
+Directive Restrictions
+Directives Talking to Controllers
+Directive to Directive Communication in AngularJS
+Understanding Isolate Scope
+Isolate Scope "@"
+Isolate Scope "="
+Isolate Scope "&"
+Isolate Scope Review
+Directive Communication
+Unit Testing a Directive
+Unit Testing Directive Scope
+Unit Testing Directive Scope Binding
+

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="app.js"></script>
+    <style>
+        body {
+            font-size: 20px;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Transclusion</h1>
+    <p>Transclusion means the inclusion of the content of one document in another document by reference. - In General</p>
+    <br>app.js
+    <pre>
+var app = angular.module('mainApp', []); 
+app.directive('myEmployee', function() { 
+  return {
+      restrict: 'EA',
+      scope:{}, //isolate scope.
+     template: "&lt;div&gt;My First Directive.&lt;/div&gt;"
+  }; 
+});
+    </pre> index.html
+    <pre>
+        &lt;div ng-app="mainApp"&gt;
+        &lt;my-employee&gt;
+          &lt;div&gt;Transcluded Element. This will not be displayed Since the transclude property is not enabled. &lt;/div&gt;
+        &lt;/my-employee&gt;
+     &lt;/div&gt;
+    </pre>
+    <p>
+        The content inside <strong>my-employee</strong> directive is not displayed. AngularJS provides <strong>tranclude</strong> property to support the transclusion in directive.
+    </p>
+    <h2>Transclusion in Directive Example</h2>
+    <p>AngularJS provides two key features to support transclusion.
+        <ol>
+            <li>The first one is a property that is used in directives named <strong>transclude </strong>and setting this to true enables the transclusion.</li>
+            <li>The second is a directive named <code>ng-transclude</code> that is used to define where external content will be placed in a directive’s template.</li>
+        </ol> You can see the use of these two features in the following example.</p>
+    <p>We have modified the above example to support transclusion simply by adding a <strong>transclude</strong> property to the <strong>myEmployee</strong> directive and it is set to true.</p>
+    app.js
+    <pre>
+        var app = angular.module('mainApp', []);
+        
+        app.directive('myEmployee', function() {
+        
+        return {
+            restrict: 'EA',
+            scope:{}, //isolate scope.
+            transclude:true,
+            template: "&lt;div ng-transclude&gt;&lt;/div&gt;&lt;div&gt;My First Directive.&lt;/div&gt;"
+        };
+        
+        });
+    </pre>
+    <p>The <strong>ng-transclude</strong> is a directive that marks the insertion point for the transcluded DOM of the nearest parent directive that uses transclusion. The template we pass in to the directive will replace the element with <strong>ng-transclude</strong>        directive. In this example, we have replaced a div element without any content with meaningful div content.</p>
+    <br>index.html
+    <pre>
+        &lt;div ng-app="mainApp"&gt;
+        &lt;my-employee&gt;
+          &lt;div&gt;Transcluded Element. Transclude property is enabled.&lt;/div&gt;
+        &lt;/my-employee&gt;
+     &lt;/div&gt;
+    </pre>
+
+
+</body>
+
+</html>
