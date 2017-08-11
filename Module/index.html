@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Angular 1.x Intro</title>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+    <h1>AngularJS Module Tutorial Example</h1>
+    <p>In this post, we are going to cover one of the most important feature in AngularJS called Modules. We can use AngularJS Module API to modularize angular applications.</p>
+    <h2>What is a Module?</h2>
+    <p>Module can be treated as a container for the different parts of your application like <code>controllers</code>, <code>filters</code>, <code>services</code>, <code>directives ,</code>etc, which specify how an application should be bootstrapped. Module
+        is an important part of the AngularJS <strong>dependency injection</strong> system.</p>
+    <p>Here is the general syntax for creating a module:</p>
+    <ul>
+        <li><strong><em>angular.module(“myModule”, []);</em></strong></li>
+    </ul>
+    <p>Here <strong><em>myModule</em></strong> is the name of the module. <strong>[]</strong> is where you inject the dependencies.</p>
+    <p>Why Modules?</p>
+    <ul>
+        <li>Helps package our code into reusable modules.</li>
+        <li>The declarative process is easier to understand.</li>
+        <li>Modules can be loaded in any order.</li>
+        <li>Easily testable and maintainable components.</li>
+        <li>Helps organize your application.</li>
+    </ul>
+    <h2>Creating a Controller in a Module</h2>
+    <p>In this section, we are going to explain how to create a controller in a module. It is very simple and we use the following steps to achieve that task.</p>
+    <pre>
+        var myFirstModule = angular.module("myFirstModule ", []);
+        myFirstModule.controller("MyController", function); 
+    </pre>
+    <p>Here we have created a module called <strong><em>myFirstModule</em></strong> and defined a controller named <strong><em>MyController </em></strong>in it.</p>
+    <p>You can also create services, providers and factories using the angular module API. The following table briefly describes some of the mostly used methods in the API.</p>
+    <table style="border-collapse: collapse; border-spacing: 0;">
+        <tbody>
+            <tr>
+                <th style="font-family: Arial, sans-serif; font-size: 14px; font-weight: normal; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; background-color: #9b9b9b;">Method</th>
+                <th style="font-family: Arial, sans-serif; font-size: 14px; font-weight: normal; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; background-color: #9b9b9b;">Syntax</th>
+            </tr>
+            <tr>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal;">module.service</td>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; font-weight: bold;">module.service( ‘serviceName’, function );</td>
+            </tr>
+            <tr>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal;">module.factory</td>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; font-weight: bold;">module.factory( ‘factoryName’, function );</td>
+            </tr>
+            <tr>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal;">module.provider</td>
+                <td style="font-family: Arial, sans-serif; font-size: 14px; padding: 10px 5px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; font-weight: bold;">module.provider( ‘providerName’, function );</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>In this post, we are not going to look into the details of these concepts. We will see these concepts in the coming posts.</p>
+    <h2>Creating a Controller in a Module Example</h2>
+    <p>The following example demonstrates how to create a controller in angular module. In this example, we will create a module called <strong>demoApp </strong>and will define the controller, <strong>blogController </strong>in it.</p>
+    <p>angular-module</p>
+    <pre>
+        &lt;!DOCTYPE html&gt;
+            &lt;html ng-app="demoApp"&gt;
+            
+            &lt;head&gt;
+            &lt;title&gt; AngularJS - Module&lt;/title&gt;
+            &lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"&gt;&lt;/script&gt;
+            &lt;/head&gt;
+            
+            &lt;body&gt;
+            
+            &lt;div ng-controller="blogController"&gt;
+            
+                First Name: &lt;input type="text" ng-model="firstName"&gt;&lt;br&gt;
+                Last Name: &lt;input type="text" ng-model="lastName"&gt;&lt;br&gt;
+                &lt;br&gt;
+                Full Name: {{firstName + " " + lastName}}
+                &lt;br&gt;
+                Blog Name : {{blogName }}
+            
+            &lt;/div&gt;
+            
+            &lt;script&gt;
+            
+            var app = angular.module("demoApp", []);
+            
+            app.controller("blogController", function($scope) {
+                    $scope.firstName = "Pankaj",
+                    $scope.lastName = "Kumar",
+                    $scope.blogName = "JournalDev"
+            });
+            
+            &lt;/script&gt;
+            
+            &lt;/body&gt;
+            &lt;/html&gt;
+    </pre>
+    <p>We use ng-app directive to specify the name of the module used in the application. You will see the following output in your browser.</p>
+    <h2>AngularJS Application Files</h2>
+    <p>Earlier we looked at how to include controllers in external files. That is very helpful when you deal with big applications. In any angular application, we use mainly two types of files, one with module and other with controllers. Let’s look in to
+        it.
+        <br> The following example demonstrates this usage.</p>
+    <p>First, we create a module in the app.js file.</p>
+    app.js
+    <p>var app = angular.module("demoApp", []);</p>
+    <p>Second step is to define the controllers in controller.js file.</p>
+    controller.js
+    <pre>
+        app.controller("blogController", function($scope) {
+                $scope.firstName = "Pankaj",
+                $scope.lastName = "Kumar",
+                $scope.blogName = "JournalDev"
+        });
+    </pre>
+    <p>Third step is to include these two files in our application.</p>
+    <p>angular-module</p>
+    <pre>&lt;!DOCTYPE html&gt;
+        &lt;html ng-app="demoApp"&gt;
+        
+        &lt;head&gt;
+        &lt;title&gt; AngularJS - Module&lt;/title&gt;
+        &lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"&gt;&lt;/script&gt;
+        &lt;/head&gt;
+        
+        &lt;body&gt;
+        
+        &lt;div ng-controller="blogController"&gt;
+        
+            First Name: &lt;input type="text" ng-model="firstName"&gt;&lt;br&gt;
+            Last Name: &lt;input type="text" ng-model="lastName"&gt;&lt;br&gt;
+            &lt;br&gt;
+            Full Name: {{firstName + " " + lastName}}
+            &lt;br&gt;
+            Blog Name : {{blogName }}
+        
+        &lt;/div&gt;
+        
+        &lt;script src="app.js"&gt;&lt;/script&gt;
+        &lt;script src="controller.js"&gt;&lt;/script&gt;
+        
+        &lt;/body&gt;
+        &lt;/html&gt;
+    </pre>
+
+
+</body>
+
+</html>

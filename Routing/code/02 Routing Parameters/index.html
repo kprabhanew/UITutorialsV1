@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Angular Intro</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!--
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.js" ></script>
+    -->
+    <script src="scripts/jquery-1.10.2.js"></script>
+    <script src="scripts/bootstrap.js"></script>
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/angular-route.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<body ng-app="app">
+    <div class="row">
+        <div class="col-sm-12 well">
+            header | <a href="#/">Home</a>
+        </div>
+    </div>
+    <div class="row" style="height:500px;">
+        <div class="col-sm-3 well" style="height:100%">
+            <ul>
+                <li><a href="#/sumUrl/2/1">SumUrl</a></li>
+                <li><a href="#/emptyUrl">EmptyUrl</a></li>
+                <li><a href="#/sumInput">sumInput</a></li>
+                <li><a href="#/sumFour/1">sumFour</a></li>
+                <li><a href="#/calc/abcd/2/3">RedirectTo-abcd</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 well" style="height:100%">
+            <div ng-view></div>
+        </div>
+    </div>
+</body>
+
+</html>

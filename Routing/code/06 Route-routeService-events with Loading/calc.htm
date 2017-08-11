@@ -1,0 +1,14 @@
+<div>
+    a = <input type="text" ng-model="a"><br><br> b = <input type="text" ng-model="b"><br><br>
+    <button ng-click="doAdd()" class="btn btn-primary">Add</button>
+    <button ng-click="doMultiply()" class="btn btn-primary">Multiply</button>
+    <button ng-click="doUpdateResult()" class="btn btn-primary">UpdateResult</button>
+    <div ng-show="isLoading == true">
+        <hr>
+        <span style="color:red;">Loading...Please Wait..</span>
+    </div>
+    <div ng-hide="isLoading == true">
+        <br>I am from Calc 1 Page :
+        <br> Calculated result = {{result.data}}
+    </div>
+</div>
