@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+    <title>Angular Intro</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>-->
+
+    <script src="scripts/jquery-1.10.2.js"></script>
+    <script src="scripts/bootstrap.js"></script>
+    <script src="scripts/angular.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<body ng-app="app">
+    <div id="div1" ng-controller="sample">
+        <h3>Controller</h3>
+        Sample: a = {{a}}, b = {{b}}
+        <br> a = <input ng-model="a" />
+        <br> Sample: p = {{o.p}}, q = {{o.q}}
+        <br> p = <input ng-model="o.p" /><br>
+        <hr>
+        <div id="div2" ng-controller="sample2">
+            <h3>Child scope starts here </h3>
+            <h4>Upon change in child's member creates/modifies child scope 'a' (not parent scope 'a') </h4>
+            Sample2: a = {{a}}, b = {{b}}
+            <br> Sample2: c = {{c}}, d = {{d}}
+            <br> a = <input ng-model="a" />
+            <hr>
+            <h3>Upon change in object's member it modifies 'o.p' everywhere) </h3>
+            <h4>It is not going to create new child related member if you working with objects</h4>
+            Sample2: p = {{o.p}}, q = {{o.q}}
+            <br> p = <input ng-model="o.p" />
+
+            <hr>
+        </div>
+    </div>
+</body>
+
+</html>

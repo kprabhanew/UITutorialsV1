@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="script.js"></script>
+
+    <style>
+        label {
+            display: inline-block;
+            width: 120px;
+            vertical-align: middle;
+        }
+        
+        input {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        input.ng-invalid {
+            border: solid red 2px;
+        }
+        
+        form {
+            padding: 10px;
+        }
+        
+        textarea {
+            width: 250px;
+            height: 160px;
+        }
+        
+        body {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body ng-app="mainModule">
+    <h3>Nested Form </h3>
+    <div ng-controller="mainController">
+        <p>While working with forms, we might find useful to reuse common parts in different forms.</p>
+        <p>For example, the fields to collect the address information of a person could be reused in many different cases. AngularJS allows us to define subforms that we can nest inside regular forms.</p>
+        <ul>
+            <li>The subform is nested inside the main form with the <strong>"ng-include"</strong> directive. To define a subform we have to use the <strong>"ng-form"</strong> directive and assign it a name. </li>
+            <li>if we want to access the validity state of the zip field inside the subform, we have to write <strong>"personForm.addressForm.zip.$valid"</strong> because the addressForm is part of personForm and all the fields inside the subform (like zip)
+                are part of the addressForm object.</li>
+            <li>Both the containing form and the subform can work on <strong>the same model variable("person") defined on the scope</strong>. In this case we see that the model variable person that we've defined in the script file is used by both the forms
+                so it can be automatically updated like if it was inside a single form.</li>
+        </ul>
+        <form name="personForm" novalidate>
+            <label for="firstNameEdit">First name:</label>
+            <input id="firstNameEdit" type="text" name="firstName" ng-model="person.firstName" required /><br />
+            <label for="lastNameEdit">Last name:</label>
+            <input id="lastNameEdit" type="text" name="lastName" ng-model="person.lastName" required /><br />
+            <ng-include src="'addressForm.html'"></ng-include>
+        </form>
+        <br />
+        <strong><label for="userDebugText">Person:</label></strong><br />
+        <textarea id="userDebugText">{{person | json}}</textarea><br />
+        <br />
+        <strong>Form validity:</strong><br />
+        <ul>
+            <li><strong>personForm.$valid =</strong> {{personForm.$valid}}</li>
+            <li><strong>personForm.addressForm.$valid =</strong> {{personForm.addressForm.$valid}}</li>
+            <hr>
+            <li><strong>personForm.firstName.$valid =</strong> {{personForm.firstName.$valid}}</li>
+            <li><strong>personForm.lastName.$valid =</strong> {{personForm.lastName.$valid}}</li>
+            <li><strong>personForm.addressForm.zip.$valid =</strong> {{personForm.addressForm.zip.$valid}}</li>
+        </ul>
+    </div>
+</body>
+
+</html>

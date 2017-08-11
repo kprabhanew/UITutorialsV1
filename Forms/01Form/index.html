@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <style>
+        body {
+            font-size: 20px;
+        }
+        
+        label {
+            width: 80px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        input {
+            width: 150px;
+            vertical-align: middle;
+        }
+        
+        textarea {
+            width: 150px;
+            height: 100px;
+            vertical-align: middle;
+        }
+        
+        .valueItems {
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body ng-app>
+    <p>AngularJS expands the standard HTML input elements by adding new features and taking care of the underlying model updates to reflect the changes in the input items.</p>
+    <ul>
+        <li>the "ng-model"" attribute that lets us bind the input value to a model variable</li>
+        <li>we need model variables associated to the input elements for the validation to work</li>
+
+        <li>We'll see that the model variables bound to them will be null whenever their values are invalid. </li>
+        <li>This is a special check made by AngularJS to make sure that the model always contains only valid values (e.g. if you type a string that is not a number in the numeric field, then the model variable bound to it will be null).</li>
+    </ul>
+    <div>
+        <label for="textEdit">Text:</label>
+        <input id="textEdit" type="text" ng-model="textValue" />
+        <span class="valueItems"><strong>Value:</strong> {{textValue}}</span><br />
+
+        <label for="emailEdit">E-mail:</label>
+        <input id="emailEdit" type="email" ng-model="emailValue" />
+        <span class="valueItems"><strong>Value:</strong> {{emailValue}}</span><br />
+
+        <label for="urlEdit">URL:</label>
+        <input id="urlEdit" type="url" ng-model="urlValue" />
+        <span class="valueItems"><strong>Value:</strong> {{urlValue}}</span><br />
+
+        <label for="passwordEdit">Password:</label>
+        <input id="passwordEdit" type="password" ng-model="passwordValue" />
+        <span class="valueItems"><strong>Value:</strong> {{passwordValue}}</span><br />
+
+        <label for="numberEdit">Number:</label>
+        <input id="numberEdit" type="number" ng-model="numberValue" />
+        <span class="valueItems"><strong>Value:</strong> {{numberValue}}</span><br />
+
+        <label for="textareaEdit">Text area:</label>
+        <textarea id="textareaEdit" ng-model="textareaValue"></textarea>
+        <span class="valueItems"><strong>Value:</strong> {{textareaValue}}</span>
+    </div>
+</body>
+
+</html>
+
+<!-- => If we type something invalid (not correctly formatted for the specified type) in the latter fields and we'll see that the model variables bound to them will be null whenever their values are invalid. 
+
+=> This is a special check made by AngularJS to make sure that the model always contains only valid values-->

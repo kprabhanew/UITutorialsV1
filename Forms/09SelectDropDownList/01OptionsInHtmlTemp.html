@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="app2.js"></script>
+    <style>
+        body {
+            font-size: 20px;
+        }
+        
+        label {
+            width: 120px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        select {
+            width: 150px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        textarea {
+            width: 250px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body ng-app="mainModule">
+    <p>we have three different choices with AngularJS:</p>
+
+    <ul>
+        <li>the available options directly in the HTML template</li>
+        <li>read the options from an array</li>
+        <li>read the options from the properties of an object</li>
+    </ul>
+    <h3>1. Options in the HTML template</h3>
+    <p>1.we can write the options directly in the HTML template. </p>
+    <p>the "ng-model"" attribute that lets us bind the selected value to a model variable</p>
+    <p>Every time that blank option will be selected, the model variable will be set to null.</p>
+
+    <div ng-controller="mainController">
+        <label for="simpleColorSel">Simple select:</label>
+        <select id="simpleColorSel" ng-model="simpleColorValue">
+            <option value="red">Red</option>
+            <option value="green">Green</option>
+            <option value="blue">Blue</option>
+        </select>
+        <br />
+        <br />
+        <strong>Selected color:</strong> {{simpleColorValue}}<br />
+    </div>
+</body>
+
+</html>

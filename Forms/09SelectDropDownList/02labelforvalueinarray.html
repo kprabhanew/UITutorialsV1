@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="app2.js"></script>
+    <style>
+        body {
+            font-size: 20px;
+        }
+        
+        label {
+            width: 120px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        select {
+            width: 150px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        textarea {
+            width: 250px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body ng-app="mainModule">
+
+    <h3>2. Options from an array</h3>
+    <div ng-controller="mainController">
+        <!-- label for value in array -->
+        <p>1. ng-options=color for color in colorsArray</p>
+        <p>this means "use colorsArray" as data source, for each item put its value in the "color" variable and use the "color" variable value as label in the options of the drop-down list" (here all the values in the array are strings)</p>
+
+        <label for="colorsArraySel">Array select 1:</label>
+        <select id="colorsArraySel" ng-model="colorsArrayValue" ng-options="color for color in colorsArray">
+            <option value="">[No color]</option>
+        </select>
+        <br />
+        <br />
+        <strong>Selected color:</strong> {{colorsArrayValue}}<br />
+        <br />
+        <br />
+        <hr>
+        <!-- label for value in array -->
+        <p>2.ng-options=person.firstName for person in peopleArray</p>
+        <p>this means "use peopleArray as data source, for each item put its value in the person variable and use the firstName property of the person variable as label in the options of the drop-down list" (here all the values in the array are objects)</p>
+        <label for="peopleArraySel1">Array select 2:</label>
+        <select id="peopleArraySel1" ng-model="peopleArrayValue1" ng-options="person.firstName for person in peopleArray">
+            <option value="">[No person]</option>
+        </select><br />
+        <br />
+        <strong>Selected person:</strong><br />
+        <textarea>{{peopleArrayValue1 | json}}</textarea><br />
+        <br />
+        <br />
+        <hr>
+        <!-- label for value in array -->
+        <p>3.ng-options=getPersonFullName(person) for person in peopleArray</p>
+        <p>this means "use peopleArray as data source, for each item put its value in the person variable and use the result of the getPersonFullName function (with the person parameter) as label in the options of the drop-down list"</p>
+        <label for="peopleArraySel2">Array select 3:</label>
+        <select id="peopleArraySel2" ng-model="peopleArrayValue2" ng-options="getPersonFullName(person) for person in peopleArray">
+      <option value="">[No person]</option>
+    </select><br />
+        <br />
+        <strong>Selected person:</strong><br />
+        <textarea>{{peopleArrayValue2 | json}}</textarea><br />
+        <br />
+        <br />
+        <h2>2 select as label for value in array</h2>
+        <!-- select as label for value in array -->
+        <h4>2.1 ng-options=person.lastName as getPersonFullName(person) for person in peopleArray</h4>
+
+        <p>this means "use peopleArray as data source, for each item put its value in the person variable, use the result of the getPersonFullName function (with the person parameter) as label in the options of the drop-down list, but set the value of the
+            lastName property of person in the model variable whenever an item is selected in the drop-down list"</p>
+        <label for="peopleArraySel3">Array select 4:</label>
+        <select id="peopleArraySel3" ng-model="peopleArrayValue3" ng-options="person.lastName as getPersonFullName(person) for person in peopleArray">
+      <option value="">[No person]</option>
+    </select><br />
+        <br />
+        <strong>Selected person:</strong> {{peopleArrayValue3}}<br />
+
+        <br />
+        <br />
+        <hr>
+        <h2>label group by group for value in array</h2>
+        <h4>ng-options=getPersonFullName(person) group by person.gender for person in peopleArray
+        </h4>
+
+        <p>this means "use peopleArray as data source, for each item put its value in the person variable, use the result of the getPersonFullName function (with the person parameter) as label in the options of the drop-down list and display all those options
+            grouped by the gender property of person"</p>
+        <!-- label group by group for value in array -->
+        <label for="peopleArraySel4">Array select 5:</label>
+        <select id="peopleArraySel4" ng-model="peopleArrayValue4" ng-options="getPersonFullName(person) group by person.gender for person in peopleArray">
+      <option value="">[No person]</option>
+    </select><br />
+        <br />
+        <strong>Selected person:</strong><br />
+        <textarea>{{peopleArrayValue4 | json}}</textarea><br />
+        <br />
+        <br />
+        <!-- select as label group by group for value in array track by trackexpr -->
+        <!--<label for="peopleArraySel5">Array select 6:</label>
+        <select id="peopleArraySel5" ng-model="peopleArrayValue5" ng-options="person as getPersonIdAndFullName(person) group by person.gender for person in peopleArray track by person.id">
+      <option value="">[No person]</option>
+    </select><br /> Type the ID to select a person:
+        <input type="text" ng-model="selPersonId" ng-change="selectPersonById(selPersonId)" /><br />
+        <br />
+        <strong>Selected person:</strong><br />
+        <textarea>{{peopleArrayValue5 | json}}</textarea><br />
+        <br />
+        <br />-->
+    </div>
+</body>
+
+</html>

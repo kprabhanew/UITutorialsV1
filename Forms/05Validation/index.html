@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="js/script.js"></script>
+
+    <style>
+        body {
+            font-size: 20px;
+        }
+        
+        #defaultValidationClassesPart .ng-valid {
+            border: solid green 3px;
+        }
+        
+        #defaultValidationClassesPart .ng-invalid {
+            border: solid red 3px;
+        }
+        
+        #customValidationClassesPart .invalidItem {
+            border: dashed red 2px;
+        }
+        
+        form {
+            padding: 10px;
+        }
+        
+        textarea {
+            width: 250px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body ng-app="mainModule">
+    <div ng-controller="mainController">
+        <h2>Default AngularJS validation classes</h2>
+        <ul>
+            <li>For every input element in an HTML template we can specify some rules to consider it valid or invalid. AngularJS automatically associates the ng-valid or ng-invalid CSS classes to let us visually track the validity state of a control.</li>
+            <li>It's important to keep in mind that the CSS styles are applied only if the control is associated to a model variable through the ng-model directive.</li>
+            <li>Whenever any of those rules is not satisfied, the element is marked as invalid and the ng-invalid CSS class is associated to it. </li>
+        </ul>
+        <div id="defaultValidationClassesPart">
+            <h3>1. Validating single elements</h3>
+            <label>Text:
+        <input type="text"
+               required
+               ng-model="textValue"
+               ng-minlength="3"
+               ng-maxlength="10"
+               ng-pattern="/^[A-Z0-9]+$/" />
+      </label><br />
+            <strong>Value:</strong> {{textValue}}<br />
+            <br />
+            <br />
+            <label>Number:
+        <input type="number"
+               ng-model="numberValue"
+               min="5"
+               max="12"/>
+      </label><br />
+            <strong>Value:</strong> {{numberValue}}<br />
+            <br />
+            <hr>
+            <!--**************************************-->
+            <h3>2. Validating a form</h3>
+            <p>We can check the validity of a whole form by assign name to the form and all input elements, so AngularJS makes available for us some variables with the same names directly on the scope to let us access them programmatically.</p>
+            <ul>
+                <li>if we want to know the validity state of the form itself, we can access this information by checking $scope.testForm.$valid or $scope.testForm.$invalid because the two boolean variables $valid and $invalid are automatically made available
+                    and kept updated by AngularJS. </li>
+                <li> In the same way, we could check the validity of the formText input by writing $scope.testForm.formText.$valid or $scope.testForm.formText.$invalid</li>
+                <li> In the example we also see the "$error" variable. It contains the information about which validity rules have been violated whenever a control is marked as invalid. Each validity rule adds a specific boolean property to the $error object
+                    and whenever that property value is true, it means that the corresponding rule is not satisfied.</li>
+            </ul>
+
+            <form name="testForm" novalidate>
+                <label>Text:
+          <input type="text"
+                 name="formText"
+                 required
+                 ng-model="formTextValue"
+                 ng-minlength="3"
+                 ng-maxlength="10"
+                 ng-pattern="/^[A-Z0-9]+$/" />
+        </label><br />
+                <strong>State:</strong> {{getItemState(testForm.formText)}}<br />
+                <strong>Error messages:</strong><br />
+
+                <div ng-if="testForm.formText.$error.required">This field is required : {{testForm.formText.$error.required}}<br /></div>
+                <div ng-if="testForm.formText.$error.minlength">The text is too short : {{testForm.formText.$error.minlength}}<br /></div>
+                <div ng-if="testForm.formText.$error.maxlength">The text is too long<br /></div>
+                <div ng-if="testForm.formText.$error.pattern">Invalid text format<br /></div>
+                <div ng-if="testForm.$valid">No errors : {{testForm.$valid}}<br /></div>
+                <strong>Error:</strong><br />
+                <textarea>{{getItemError(testForm.formText) | json}}</textarea><br />
+                <br />
+                <label>E-mail:
+          <input type="email"
+                 name="formEmail"
+                 ng-model="formEmailValue" />
+        </label><br />
+                <strong>State:</strong> {{getItemState(testForm.formEmail)}}<br />
+                <strong>Error messages:</strong><br />
+                <div ng-show="testForm.formEmail.$error.email">Invalid e-mail address<br /></div>
+                <div ng-if="testForm.formEmail.$valid">No errors<br /></div>
+                <strong>Error:</strong><br />
+                <textarea>{{getItemError(testForm.formEmail) | json}}</textarea><br />
+                <br />
+                <strong>Form state:</strong> {{getItemState(testForm)}}<br />
+                <strong>Form error:</strong><br />
+                <textarea>{{getItemError(testForm) | json}}</textarea><br />
+            </form>
+            <br />
+        </div>
+        <hr>
+        <!--***************************************************-->
+        <p>how we could use our own CSS classes if needed to mark the controls as valid or invalid.</p>
+        <ul>
+            <li>Here we use our custom invalidItem CSS class to visualize a component as invalid. Whenever the validity state of an input element changes, the getValidationCSSClass function is called and returns an object whose property names are the CSS
+                classes that we want to add to the element and for each property a value of true means that the class has to be added, while false means that we don't want the CSS class to be used.</li>
+            <li>Whenever its text changes, the getValidationCSSClass function is called and the ng-class directive receives an object that says that the invalidItem CSS class should be applied to the HTML element only if both the $invalid and $dirty states
+                of the control are true (we want to visualize the error only if the user already interacted at least once with the control and the text is not valid). </li>
+            <li>You might have noticed that we've used the ng-required directive in the firstName input instead of required. This is just another way to mark a field as required, but in this case we can use an expression to determine if a field is mandatory.
+                <p>If you check the checkbox in the form, its associated firstNameRequired model variable is set to true and the firstName input becomes mandatory.</p>
+            </li>
+        </ul>
+
+        <div id="customValidationClassesPart">
+            <h3>3. Custom CSS classes</h3>
+            <form name="personForm" novalidate>
+                <label>Check for the first name to be mandatory:
+          <input type="checkbox" ng-model="firstNameRequired" ng-init="firstNameRequired = true" />
+        </label><br />
+                <label>First name:
+          <input type="text"
+                 name="firstName"
+                 ng-required="firstNameRequired"
+                 ng-model="person.firstName"
+                 ng-class="getValidationCSSClass(personForm.firstName)" />
+        </label>
+                <span ng-show="personForm.firstName.$invalid" style="color: red">{{getValidationError(personForm.firstName)}}</span><br />
+                <label>Last name:
+          <input type="text"
+                 name="lastName"
+                 required
+                 ng-model="person.lastName"
+                 ng-class="getValidationCSSClass(personForm.lastName)" />
+        </label>
+                <span ng-show="personForm.lastName.$invalid" style="color: red">{{getValidationError(personForm.lastName)}}</span><br />
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

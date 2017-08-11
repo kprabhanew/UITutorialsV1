@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <style>
+        body {
+            font-size: 20px;
+        }
+    </style>
+
+</head>
+
+<body ng-app>
+    <h3>1. Show</h3>
+    <ul>
+        <li>If we want to show or hide conditionally an element (and it's subtree) in the DOM, AngularJS gives us the ng-show and ng-hide directives.</li>
+        <li>Whenever the user changes the selected state of the checkboxes, the squares are shown or hidden.</li>
+    </ul>
+    <label>Show the square: <input type="checkbox" ng-model="mustShow" /></label><br />
+    <div ng-show="mustShow" style="width: 50px; height: 50px; background-color: red;"></div>
+    <br /> Output : {{mustShow}}
+    <br />
+    <h3>2. Hide</h3>
+    <label>Hide the square: <input type="checkbox" ng-model="mustHide" /></label><br />
+    <div ng-hide="mustHide" style="width: 50px; height: 50px; background-color: green;"></div><br />
+    <br /> Output : {{mustHide}}
+    <br />
+</body>
+
+</html>

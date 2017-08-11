@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="app3.js"></script>
+    <style>
+        body {
+            font-size: 20px;
+        }
+        
+        label {
+            width: 120px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        select {
+            width: 150px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        textarea {
+            width: 250px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body ng-app="mainModule">
+    <h3>3.Object As data source</h3>
+    <div ng-controller="mainController">
+        <!-- label for (key, value) in object -->
+        <h2>label for (key, value) in object</h2>
+        <p>ng-options=code for (code, name) in colorsObject</p>
+        <p>this means "use colorsObject as data source, for each property put its name in the code variable and its value in the name variable, use the code variable as label in the options of the drop-down list"; whenever an item is selected in the drop-down
+            list, the corresponding property value is assigned to the model variable</p>
+        <label for="colorsObjectSel">Object select 1:</label>
+        <select id="colorsObjectSel" ng-model="colorsObjectValue" ng-options="code for (code, name) in colorsObject">
+      <option value="">[No color]</option>
+    </select><br />
+        <br />
+        <strong>Selected color:</strong> {{colorsObjectValue}}<br />
+        <br />
+        <hr>
+
+        <!-- select as label for (key, value) in object -->
+        <h2>select as label for (key, value) in object</h2>
+        <h3>ng-options=id as person.firstName for (id, person) in peopleObject</h3>
+        <p>this means "use peopleObject as data source, for each property put its name in the id variable and its value in the person variable, use the firstName property of the person variable as label in the options of the drop-down list and set the value
+            of id in the model variable whenever an item is selected in the drop-down list"</p>
+
+        <label for="peopleObjectSel1">Object select 2:</label>
+        <select id="peopleObjectSel1" ng-model="peopleObjectValue1" ng-options="code as person.firstName for (code, person) in peopleObject">
+      <option value="">[No person]</option>
+    </select><br />
+        <br />
+        <strong>Selected person ID:</strong> {{peopleObjectValue1}}<br />
+        <br />
+        <hr>
+        <!-- label group by group for (key, value) in object -->
+        <h2>label group by group for (key, value) in object</h2>
+        <p>ng-options=person.lastName group by person.gender for (id, person) in peopleObject</p>
+        <p>this means "use peopleObject as data source, for each property put its name in the id variable and its value in the person variable, use the lastName property of the person variable as label in the options of the drop-down list and display all
+            those options grouped by the gender property of person"</p>
+        <label for="peopleObjectSel2">Object select 3:</label>
+        <select id="peopleObjectSel2" ng-model="peopleObjectValue2" ng-options="person.lastName group by person.gender for (id, person) in peopleObject">
+      <option value="">[No person]</option>
+    </select><br />
+        <br />
+        <strong>Selected person:</strong><br />
+        <textarea>{{peopleObjectValue2 | json}}</textarea><br />
+        <br />
+        <hr>
+        <!-- select as label group by group for (key, value) in object -->
+        <h2>select as label group by group for (key, value) in object</h2>
+        <h3>ng-options=person as getPersonFullName(person) group by person.gender for (id, person) in peopleObject</h3>
+        <p>this means "use peopleObject as data source, for each property put its name in the id variable and its value in the person variable, use the result of the getPersonFullName function (with the person parameter) as label in the options of the drop-down
+            list and display all those options grouped by the gender property of person, set the value of person in the model variable whenever an item is selected in the drop-down list"</p>
+        <label for="peopleObjectSel3">Object select 4:</label>
+        <select id="peopleObjectSel3" ng-model="peopleObjectValue3" ng-options="person as getPersonFullName(person) group by person.gender for (id, person) in peopleObject">
+      <option value="">[No person]</option>
+    </select><br />
+        <br />
+        <strong>Selected person:</strong><br />
+        <textarea>{{peopleObjectValue3 | json}}</textarea><br />
+        <br />
+        <hr>
+        <h3>4. Selecting multiple options</h3>
+        <label for="multiColorsSel">Multiple select:</label>
+        <select id="multiColorsSel" ng-model="multiColorsValue" ng-options="color for color in colorsArray" multiple>
+      <option value="">[No color]</option>
+    </select><br />
+        <br />
+        <strong>Selected colors:</strong> {{multiColorsValue}}
+    </div>
+</body>
+
+</html>
